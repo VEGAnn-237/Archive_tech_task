@@ -28,9 +28,9 @@ def scrape_all_pages(url):
 
         all_pokemons = soup.findAll('ul', class_='products columns-4')
         for pokemon in all_pokemons[0]:
-            if pokemon.text.strip():
+            characteristics = pokemon.text.strip().splitlines()
+            if characteristics:
                 pokemons_count += 1
-                characteristics = pokemon.text.strip().splitlines()
                 pokemon_name = characteristics[0]
                 pokemon_price = characteristics[1][1:]
                 pokemon_image_url = get_pokemon_image_url(pokemon)
